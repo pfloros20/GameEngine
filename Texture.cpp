@@ -3,32 +3,32 @@
 Texture::Texture(std::string title,SDL_Renderer* renderer)
 	:renderer(renderer)
 {
-	SDL_Surface* sprite = SDL_LoadBMP(title.c_str());
-	if (sprite == nullptr)
-		std::cout << "Sprite didnt Load: " << SDL_GetError() << std::endl;
-	texture = SDL_CreateTextureFromSurface(renderer, sprite);
+	SDL_Surface* surface = SDL_LoadBMP(title.c_str());
+	if (surface == nullptr)
+		std::cout << "surface didnt Load: " << SDL_GetError() << std::endl;
+	texture = SDL_CreateTextureFromSurface(renderer, surface);
 	if (texture == nullptr)
 		std::cout << "Texture didnt Load: " << SDL_GetError() << std::endl;
-	width = sprite->w;
-	height = sprite->h;
-	SDL_FreeSurface(sprite);
+	width = surface->w;
+	height = surface->h;
+	SDL_FreeSurface(surface);
 }
 
 Texture::Texture(std::string title, SDL_Renderer* renderer,
 	int transparentRed, int transparentBlue, int transparentGreen)
 	:renderer(renderer)
 {
-	SDL_Surface* sprite = SDL_LoadBMP(title.c_str());
-	if (sprite == nullptr)
-		std::cout << "Sprite didnt Load: " << SDL_GetError() << std::endl;
-	SDL_SetColorKey(sprite, SDL_TRUE, SDL_MapRGB(sprite->format
+	SDL_Surface* surface = SDL_LoadBMP(title.c_str());
+	if (surface == nullptr)
+		std::cout << "surface didnt Load: " << SDL_GetError() << std::endl;
+	SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format
 		, transparentRed, transparentGreen, transparentBlue));
-	texture = SDL_CreateTextureFromSurface(renderer, sprite);
+	texture = SDL_CreateTextureFromSurface(renderer, surface);
 	if (texture == nullptr)
 		std::cout << "Texture didnt Load: " << SDL_GetError() << std::endl;
-	width = sprite->w;
-	height = sprite->h;
-	SDL_FreeSurface(sprite);
+	width = surface->w;
+	height = surface->h;
+	SDL_FreeSurface(surface);
 }
 
 Texture::~Texture()
