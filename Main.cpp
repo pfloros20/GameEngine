@@ -10,7 +10,7 @@ int main(int argc, char *args[]) {
 			game.HandleEvents();
 			game.Update();
 			game.Render();
-			SDL_Delay(33);
+			SDL_Delay(17);
 		}
 	}
 	_CrtDumpMemoryLeaks();
