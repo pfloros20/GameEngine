@@ -22,6 +22,11 @@ Game::Game(std::string windowTitle,int windowWidth,int windowHeight){
 		std::cout << "Failed to Create Renderer: " << SDL_GetError() << std::endl;
 		//TO-DO:Handle Error
 	}
+
+	//TEST CODE
+	temp=SDL_LoadBMP("Resource Files/spooooooky.bmp");
+	ex =new Character(0, 0, 248, 376, temp, renderer);
+	//TEST CODE
 }
 Game::~Game() {
 	SDL_DestroyWindow(window);
@@ -37,13 +42,44 @@ void Game::HandleEvents()
 	case SDL_QUIT:
 			running = false;
 			break;
+	case SDL_KEYDOWN:
+		switch (event.key.keysym.sym) {
+			case SDLK_DOWN:
+				std::cout << "Down" << std::endl;
+				dir = "DOWN";
+				break;
+			case SDLK_UP:
+				std::cout << "Up" << std::endl;
+				dir = "UP";
+				break;
+			case SDLK_LEFT:
+					std::cout << "Left" << std::endl;
+					dir = "LEFT";
+					break;
+			case SDLK_RIGHT:
+					std::cout << "Right" << std::endl;
+					dir = "RIGHT";
+					break;
+		}
+		break;
+	case SDL_KEYUP:
+		dir = "NONE";
+		break;
 	}
+}
+
+void Game::Update()
+{
+	ex->Update(dir);
 }
 
 void Game::Render()
 {
 	SDL_RenderClear(renderer);
 	//render stuff
+	//TEST CODE
+	ex->Render();
+	//TEST CODE
 	SDL_RenderPresent(renderer);
 }
 
