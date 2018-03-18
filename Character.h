@@ -1,16 +1,17 @@
 #pragma once
 #include <SDL.h>
 #include <string>
+#include "Texture.h"
 class Character {
 public:
-	Character(int x,int y,int width,int height,
-		SDL_Surface* sprite, SDL_Renderer* renderer);
+	Character(int x,int y,std::string sprite, SDL_Renderer* renderer);
+	Character(int x, int y, std::string sprite, SDL_Renderer* renderer,
+		int transparentRed, int transparentBlue, int transparentGreen);
 	~Character();
 	void Render();
 	void Update(std::string dir);
 private:
-	SDL_Rect characterRect;
+	int x, y;
 	SDL_Renderer* renderer;
-	SDL_Surface* sprite=nullptr;
-	SDL_Texture* texture=nullptr;
+	Texture* texture=nullptr;
 };

@@ -1,36 +1,41 @@
 #include "Character.h"
 #include <iostream>
-Character::Character(int x, int y, int width, int height,
-	SDL_Surface* sprite,SDL_Renderer* renderer)
-	:characterRect({ x,y,width,height }),
-	sprite(sprite),
+Character::Character(int x, int y,std::string sprite,SDL_Renderer* renderer)
+	:x(x),
+	y(y),
 	renderer(renderer)
 {
-	if (sprite == nullptr)
-		std::cout << "Sprite didnt Load: " << SDL_GetError() << std::endl;
-	texture = SDL_CreateTextureFromSurface(renderer, sprite);
+	texture = new Texture(sprite,renderer);
+}
+
+Character::Character(int x, int y, std::string sprite, SDL_Renderer* renderer,
+	int transparentRed, int transparentBlue, int transparentGreen)
+	:x(x),
+	y(y),
+	renderer(renderer)
+{
+	texture = new Texture(sprite, renderer,transparentRed,transparentGreen,transparentBlue);
 }
 
 Character::~Character()
 {
-	SDL_FreeSurface(sprite);
-	SDL_DestroyTexture(texture);
+	delete texture;
+	texture = nullptr;
 }
 
 void Character::Render()
 {
-	SDL_RenderCopy(renderer, texture,NULL,&characterRect);
-	SDL_RenderPresent(renderer);
+	texture->Render(x, y);
 }
 
 void Character::Update(std::string dir)
 {
 	if (dir == "RIGHT")
-		characterRect.x += 10;
+		x += 10;
 	else if (dir == "LEFT")
-		characterRect.x -= 10;
+		x -= 10;
 	else if (dir == "UP")
-		characterRect.y -= 10;
+		y -= 10;
 	else if (dir == "DOWN")
-		characterRect.y += 10;
+		y += 10;
 }
