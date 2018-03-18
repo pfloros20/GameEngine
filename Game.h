@@ -3,19 +3,21 @@
 #include <string>
 
 #include "Character.h"
+#include "Window.h"
 
 class Game {
 public:
-	Game(std::string windowTitle, int windowWidth, int windowHeight);
+	Game();
 	~Game();
+	Game(const Window& window) = delete;
+	Game& operator=(const Window& window) = delete;
 	void HandleEvents();
 	void Update();
 	void Render();
 	bool State();
 
-	SDL_Renderer* renderer;
 private:
-	SDL_Window* window;
+	Window* window;
 	bool running = true;
 	//TEST CODE
 	std::string dir;

@@ -1,37 +1,18 @@
 #pragma once
 #include "Game.h"
 #include <iostream>
-Game::Game(std::string windowTitle,int windowWidth,int windowHeight){
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-		std::cout << "Failed to Initialize SDL: " << SDL_GetError() << std::endl;
-		//TO-DO:Handle Error
-	}
-	window = SDL_CreateWindow(
-		windowTitle.c_str(),
-		SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED,
-		windowWidth,
-		windowHeight,
-		SDL_WINDOW_SHOWN);
-	if (window == nullptr) {
-		std::cout << "Failed to Create Window: " << SDL_GetError() << std::endl;
-		//TO-DO:Handle Error
-	}
-	renderer = SDL_CreateRenderer(window,-1,0);
-	if (renderer == nullptr) {
-		std::cout << "Failed to Create Renderer: " << SDL_GetError() << std::endl;
-		//TO-DO:Handle Error
-	}
-
+Game::Game(){
+	window =new Window("Moving Character", 800, 600, false);
 	//TEST CODE
 	temp=SDL_LoadBMP("Resource Files/spooooooky.bmp");
-	ex =new Character(0, 0, 248, 376, temp, renderer);
+	ex =new Character(0, 0, 800, 600, temp, window->renderer);
 	//TEST CODE
 }
-Game::~Game() {
-	SDL_DestroyWindow(window);
-	SDL_DestroyRenderer(renderer);
-	SDL_Quit();
+
+Game::~Game()
+{
+	delete window;
+	window = nullptr;
 }
 
 void Game::HandleEvents()
@@ -75,12 +56,12 @@ void Game::Update()
 
 void Game::Render()
 {
-	SDL_RenderClear(renderer);
+	window->ClearWindow();
 	//render stuff
 	//TEST CODE
 	ex->Render();
 	//TEST CODE
-	SDL_RenderPresent(renderer);
+	window->PresentWindow();
 }
 
 bool Game::State()
