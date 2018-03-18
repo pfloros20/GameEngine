@@ -1,15 +1,19 @@
 #include "SDL.h"
 #include "Game.h"
+#include <iostream>
 int main(int argc, char *args[]) {
-	
-	Game game = Game("Moving Character",600,400);
-	
+	{
+		Game game = Game();
 
-	while (game.State()) {
-		game.HandleEvents();
-		game.Update();
-		game.Render();
-		SDL_Delay(33);
+
+		while (game.State()) {
+			game.HandleEvents();
+			game.Update();
+			game.Render();
+			SDL_Delay(33);
+		}
 	}
+	_CrtDumpMemoryLeaks();
+	std::cin.get();
 	return 0;
 }
