@@ -17,7 +17,7 @@ Window::Window(std::string windowTitle, int windowWidth, int windowHeight,bool f
 		std::cout << "Failed to Create Window: " << SDL_GetError() << std::endl;
 		//TO-DO:Handle Error
 	}
-	renderer = SDL_CreateRenderer(window, -1, 0);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
 	if (renderer == nullptr) {
 		std::cout << "Failed to Create Renderer: " << SDL_GetError() << std::endl;
 		//TO-DO:Handle Error
@@ -30,6 +30,14 @@ Window::~Window()
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
+}
+
+void Window::SetWindowIcon(std::string title)
+{
+	SDL_Surface* temp = SDL_LoadBMP(title.c_str());
+	if (temp == NULL)
+		std::cout << "Could not Load Window Icon: " << SDL_GetError();
+	SDL_SetWindowIcon(window, temp);
 }
 
 void Window::ClearWindow()

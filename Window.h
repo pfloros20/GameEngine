@@ -8,6 +8,7 @@ public:
 	Window(const Window& window) = delete;
 	Window& operator=(const Window& window) = delete;
 	~Window();
+	void SetWindowIcon(std::string title);
 	void ClearWindow();
 	void PresentWindow();
 	SDL_Renderer* renderer;

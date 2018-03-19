@@ -2,7 +2,8 @@
 #include "Game.h"
 #include <iostream>
 Game::Game(){
-	window =new Window("Moving Character", 800, 600, true);
+	window =new Window("Moving Character", 1366, 768, true);
+	window->SetWindowIcon("Resource Files/spooooooky.bmp");
 	//TEST CODE
 	ex =new Character(0, 0, "Resource Files/spooooooky.bmp",
 		window->renderer,35,35,35);
