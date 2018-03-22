@@ -21,7 +21,6 @@ private:
 	bool running = true;
 	//TEST CODE
 	std::string dir;
-	SDL_Surface* temp;
 	Character* ex;
 	//TEST CODE
 };
