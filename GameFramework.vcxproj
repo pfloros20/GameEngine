@@ -22,7 +22,7 @@
     <ProjectGuid>{38EE8585-1AAC-44CA-89C8-DC4D4B378330}</ProjectGuid>
     <RootNamespace>FirstSDL</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>GameEngine</ProjectName>
+    <ProjectName>GameFramework</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
