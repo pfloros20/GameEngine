@@ -11,7 +11,7 @@ public:
 	void SetWindowIcon(std::string title);
 	void ClearWindow();
 	void PresentWindow();
-	SDL_Renderer* renderer;
+	static SDL_Renderer* renderer;
 private:
 	SDL_Window* window;
 };

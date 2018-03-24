@@ -7,15 +7,14 @@
 
 class Texture {
 public:
-	Texture(std::string title,Window* window);
-	Texture(std::string title, Window* window, Color chroma);
+	Texture(std::string title);
+	Texture(std::string title, Color chroma);
 	Texture(const Texture& texture) = delete;
 	Texture& operator=(const Texture& texture) = delete;
 	~Texture();
 	void Render(int x,int y);
-	void Render(int x, int y,Rect frame);
+	void Render(Rect source,Rect dest);
 private:
-	Window* window;
 	SDL_Texture* texture;
 	int width, height;
 };

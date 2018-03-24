@@ -2,7 +2,7 @@
 #include "Window.h"
 #include "Color.h"
 #include "SDL.h"
-Sprite::Sprite(std::string title,Window* window, int frameWidth, int frameHeight,
+Sprite::Sprite(std::string title, int frameWidth, int frameHeight,
 	int rows,int columns,Color chroma)
 	:frameWidth(frameWidth),
 	frameHeight(frameHeight),
@@ -11,7 +11,7 @@ Sprite::Sprite(std::string title,Window* window, int frameWidth, int frameHeight
 {
 	currentPos = 0;
 	currentAnimation = 0;
-	sprite = new Texture(title, window, { chroma.r, chroma.g, chroma.b });
+	sprite = new Texture(title, { chroma.r, chroma.g, chroma.b });
 }
 
 Sprite::~Sprite()
@@ -22,7 +22,7 @@ Sprite::~Sprite()
 
 void Sprite::Render(int x, int y)
 {
-	sprite->Render(x, y, { currentPos*frameWidth, currentAnimation*frameHeight,frameWidth,frameHeight });
+	sprite->Render({ x, y,frameWidth,frameHeight }, { currentPos*frameWidth, currentAnimation*frameHeight,frameWidth,frameHeight });
 	currentPos++;
 	SDL_Delay(500/columns);
 	if (currentPos == columns)

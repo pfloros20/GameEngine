@@ -1,5 +1,8 @@
 #include "Window.h"
 #include <iostream>
+
+SDL_Renderer* Window::renderer = nullptr;
+
 Window::Window(std::string windowTitle, int windowWidth, int windowHeight,bool fullscreen)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
