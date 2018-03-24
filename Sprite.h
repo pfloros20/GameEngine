@@ -9,6 +9,7 @@ public:
 	Sprite& operator=(const Sprite& sprite) = delete;
 	~Sprite();
 	void Render(int x,int y);
+	void RenderMirrored(int x, int y);
 	void SwitchAnimation(int i);
 private:
 	Texture* sprite;

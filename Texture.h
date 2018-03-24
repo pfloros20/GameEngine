@@ -13,7 +13,9 @@ public:
 	Texture& operator=(const Texture& texture) = delete;
 	~Texture();
 	void Render(int x,int y);
+	void RenderMirrored(int x,int y);
 	void Render(Rect source,Rect dest);
+	void RenderMirrored(Rect source, Rect dest);
 private:
 	SDL_Texture* texture;
 	int width, height;
