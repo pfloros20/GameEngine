@@ -40,9 +40,23 @@ void Texture::Render(int x, int y)
 	SDL_RenderCopy(Window::renderer, texture, NULL,&temp );
 }
 
+void Texture::RenderMirrored(int x, int y)
+{
+	SDL_Rect temp = { x,y,width,height };
+	SDL_RenderCopyEx(Window::renderer, texture, NULL, &temp,0,NULL,SDL_FLIP_HORIZONTAL);
+}
+
 void Texture::Render(Rect source, Rect dest)
 {
 	SDL_Rect sdlsource = { dest.x,dest.y,dest.width,dest.height };
 	SDL_Rect sdldest = { source.x,source.y,source.width,source.height };
 	SDL_RenderCopy(Window::renderer, texture, &sdlsource, &sdldest);
+}
+
+void Texture::RenderMirrored(Rect source, Rect dest)
+{
+
+	SDL_Rect sdlsource = { dest.x,dest.y,dest.width,dest.height };
+	SDL_Rect sdldest = { source.x,source.y,source.width,source.height };
+	SDL_RenderCopyEx(Window::renderer, texture, &sdlsource, &sdldest,0,NULL,SDL_FLIP_HORIZONTAL);
 }

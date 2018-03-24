@@ -3,14 +3,13 @@
 #include <iostream>
 int main(int argc, char *args[]) {
 	{
-		Game game = Game();
+		Game game;
 
 
 		while (game.State()) {
 			game.HandleEvents();
 			game.Update();
 			game.Render();
-			SDL_Delay(17);
 		}
 	}
 	_CrtDumpMemoryLeaks();
