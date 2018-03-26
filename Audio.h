@@ -12,5 +12,4 @@ private:
 	SDL_AudioDeviceID device;
 	Uint8* start;
 	Uint32 length;
-	int onQueue = 0;
 };
