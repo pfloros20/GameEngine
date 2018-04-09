@@ -4,13 +4,14 @@
 
 #include "Character.h"
 #include "Window.h"
+#include "Audio.h"
 
 class Game {
 public:
 	Game();
 	~Game();
-	Game(const Window& window) = delete;
-	Game& operator=(const Window& window) = delete;
+	Game(const Game& game) = delete;
+	Game& operator=(const Game& game) = delete;
 	void HandleEvents();
 	void Update();
 	void Render();
@@ -19,8 +20,4 @@ public:
 private:
 	Window* window;
 	bool running = true;
-	//TEST CODE
-	std::string dir;
-	Character* ex;
-	//TEST CODE
 };

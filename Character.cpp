@@ -1,41 +1,43 @@
 #include "Character.h"
 #include <iostream>
-Character::Character(int x, int y,std::string sprite,SDL_Renderer* renderer)
+#include "Window.h"
+#include "SDL.h"
+Character::Character(int x, int y, std::string sprite,
+	int frameWidth, int frameHeight, int columns, int rows,	Color chroma)
 	:x(x),
-	y(y),
-	renderer(renderer)
+	y(y)
 {
-	texture = new Texture(sprite,renderer);
-}
-
-Character::Character(int x, int y, std::string sprite, SDL_Renderer* renderer,
-	int transparentRed, int transparentBlue, int transparentGreen)
-	:x(x),
-	y(y),
-	renderer(renderer)
-{
-	texture = new Texture(sprite, renderer,transparentRed,transparentGreen,transparentBlue);
+	this->sprite = new Sprite(sprite,frameWidth,frameHeight,columns,rows, { chroma.r,chroma.g,chroma.b });
 }
 
 Character::~Character()
 {
-	delete texture;
-	texture = nullptr;
+	delete sprite;
+	sprite = nullptr;
 }
 
 void Character::Render()
 {
-	texture->Render(x, y);
+	sprite->Render(x,y);
 }
 
-void Character::Update(std::string dir)
+void Character::Update()
 {
-	if (dir == "RIGHT")
+	const Uint8* state = SDL_GetKeyboardState(NULL);
+	if (state[SDL_SCANCODE_RIGHT]) {
 		x += 10;
-	else if (dir == "LEFT")
+		sprite->SwitchAnimation(1);
+	}
+	if (state[SDL_SCANCODE_LEFT]) {
 		x -= 10;
-	else if (dir == "UP")
+		sprite->SwitchAnimation(3);
+	}
+	if (state[SDL_SCANCODE_UP]) {
 		y -= 10;
-	else if (dir == "DOWN")
+		sprite->SwitchAnimation(0);
+	}
+	if (state[SDL_SCANCODE_DOWN]) {
 		y += 10;
+		sprite->SwitchAnimation(2);
+	}
 }
