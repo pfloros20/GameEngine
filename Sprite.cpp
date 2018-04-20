@@ -24,7 +24,8 @@ void Sprite::Render(int x, int y)
 {
 	sprite->Render({ x, y,frameWidth,frameHeight }, { currentPos*frameWidth, currentAnimation*frameHeight,frameWidth,frameHeight });
 	currentPos++;
-	SDL_Delay(500/columns);
+	if(columns!=1)
+		SDL_Delay(500/columns);
 	if (currentPos == columns)
 		currentPos = 0;
 }
@@ -33,7 +34,8 @@ void Sprite::RenderMirrored(int x, int y)
 {
 	sprite->RenderMirrored({ x, y,frameWidth,frameHeight }, { currentPos*frameWidth, currentAnimation*frameHeight,frameWidth,frameHeight });
 	currentPos++;
-	SDL_Delay(500 / columns);
+	if (columns != 1)
+		SDL_Delay(500 / columns);
 	if (currentPos == columns)
 		currentPos = 0;
 }
