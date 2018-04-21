@@ -30,6 +30,11 @@ void Sprite::Render(int x, int y)
 		currentPos = 0;
 }
 
+void Sprite::RenderFrame(int x,int y,int row, int column)
+{
+	sprite->Render({ x, y,frameWidth,frameHeight }, { column*frameWidth, row*frameHeight,frameWidth,frameHeight });
+}
+
 void Sprite::RenderMirrored(int x, int y)
 {
 	sprite->RenderMirrored({ x, y,frameWidth,frameHeight }, { currentPos*frameWidth, currentAnimation*frameHeight,frameWidth,frameHeight });
