@@ -20,5 +20,6 @@ bool Rect::Collision(const Rect & rect) const
 
 void Rect::Render()
 {
-	SDL_RenderDrawRect(Window::renderer,&ConvertToSDL());
+	SDL_Rect rect = ConvertToSDL();
+	SDL_RenderDrawRect(Window::renderer,&rect);
 }
