@@ -1,6 +1,4 @@
 #include "Sprite.h"
-#include "Window.h"
-#include "Color.h"
 Sprite::Sprite(std::string title, int frameWidth, int frameHeight,
 	int rows,int columns,Color chroma)
 	:frameWidth(frameWidth),
