@@ -3,12 +3,7 @@ Font::Font(std::string title, int width, int height, Color chroma)
 	:width(width),
 	height(height)
 {
-	fontSprite = new Sprite(title, width, height, 3, 32, chroma);
-}
-
-Font::~Font()
-{
-	delete fontSprite;
+	fontSprite = std::make_unique<Sprite>(title, width, height, 3, 32, chroma);
 }
 
 void Font::RenderText(std::string text, int x, int y)
