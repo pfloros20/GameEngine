@@ -3,11 +3,15 @@
 Texture::Texture(std::string title)
 {
 	SDL_Surface* surface = SDL_LoadBMP(title.c_str());
-	if (surface == nullptr)
-		std::cout << "surface didnt Load: " << SDL_GetError() << std::endl;
+	if (surface == nullptr) {
+		std::string err = "Failed to load surface file: " + title + " " + std::string(SDL_GetError());
+		throw std::runtime_error(err);
+	}
 	texture = SDL_CreateTextureFromSurface(Window::renderer, surface);
-	if (texture == nullptr)
-		std::cout << "Texture didnt Load: " << SDL_GetError() << std::endl;
+	if (texture == nullptr) {
+		std::string err = "Failed to create texture: " + title + " " + std::string(SDL_GetError());
+		throw std::runtime_error(err);
+	}
 	width = surface->w;
 	height = surface->h;
 	SDL_FreeSurface(surface);
@@ -16,13 +20,17 @@ Texture::Texture(std::string title)
 Texture::Texture(std::string title,Color chroma)
 {
 	SDL_Surface* surface = SDL_LoadBMP(title.c_str());
-	if (surface == nullptr)
-		std::cout << "surface didnt Load: " << SDL_GetError() << std::endl;
+	if (surface == nullptr) {
+		std::string err = "Failed to load surface file: " + title + " " + std::string(SDL_GetError());
+		throw std::runtime_error(err);
+	}
 	SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format
 		, chroma.r, chroma.g, chroma.b));
 	texture = SDL_CreateTextureFromSurface(Window::renderer, surface);
-	if (texture == nullptr)
-		std::cout << "Texture didnt Load: " << SDL_GetError() << std::endl;
+	if (texture == nullptr) {
+		std::string err = "Failed to create texture: " + title + " " + std::string(SDL_GetError());
+		throw std::runtime_error(err);
+	}
 	width = surface->w;
 	height = surface->h;
 	SDL_FreeSurface(surface);

@@ -2,8 +2,10 @@
 #include <iostream>
 Audio::Audio(std::string title)
 {
-	if (SDL_LoadWAV(title.c_str(), &spec, &start, &length) == NULL)
-		std::cout << "Failed to load audio file: " << SDL_GetError() << std::endl;
+	if (SDL_LoadWAV(title.c_str(), &spec, &start, &length) == NULL) {
+		std::string err = "Failed to load audio file: " + title + " " + std::string(SDL_GetError());
+		throw std::runtime_error(err);
+	}
 	device = SDL_OpenAudioDevice(NULL, 0, &spec, NULL, 0);
 
 }
