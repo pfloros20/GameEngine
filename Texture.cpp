@@ -1,5 +1,4 @@
 #include "Texture.h"
-#include <iostream>
 Texture::Texture(std::string title)
 {
 	SDL_Surface* surface = SDL_LoadBMP(title.c_str());

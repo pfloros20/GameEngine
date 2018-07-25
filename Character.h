@@ -1,15 +1,15 @@
 #pragma once
-#include "SDL.h"
 #include <string>
 #include "Sprite.h"
+#include <memory>
 class Character {
 public:
+	enum button { UP, DOWN, RIGHT, LEFT };
 	Character(int x, int y, std::string sprite,
 		int frameWidth,int frameHeight,int columns,int rows,Color chroma);
-	~Character();
 	void Render();
-	void Update();
-	int x, y;
+	void Update(button input);
 private:
-	Sprite* sprite=nullptr;
+	std::unique_ptr<Sprite> sprite;
+	int x, y;
 };

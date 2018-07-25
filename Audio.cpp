@@ -1,5 +1,4 @@
 #include "Audio.h"
-#include <iostream>
 Audio::Audio(std::string title)
 {
 	if (SDL_LoadWAV(title.c_str(), &spec, &start, &length) == NULL) {
