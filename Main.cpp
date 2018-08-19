@@ -11,7 +11,7 @@ int main(int argc, char *args[]) {
 			game.Render();
 		}
 	}
-	_CrtDumpMemoryLeaks();
+	//_CrtDumpMemoryLeaks();
 	std::cin.get();
 	return 0;
 }
